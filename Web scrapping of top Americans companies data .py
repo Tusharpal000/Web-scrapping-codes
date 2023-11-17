@@ -1,19 +1,14 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
+# IMPORT BEAUTIFULSOUP
 
 from bs4 import BeautifulSoup
 
 
-# In[2]:
-
+# In[2]: IMPORT REQUESTS
 
 import requests
 
 
-# In[3]:
+# In[3]: BRINGING DATA FROM SOURCE IN HTML FORMAT 
 
 
 url = 'https://en.wikipedia.org/wiki/List_of_largest_companies_in_the_United_States_by_revenue'
@@ -27,7 +22,7 @@ soup = BeautifulSoup(page.text, 'html')
 print(soup)
 
 
-# In[5]:
+# In[5]: FIND OUT ALL THE TABLE DATA IN HTML CODES
 
 
 soup.find_all('table')[1]
@@ -63,7 +58,7 @@ world_title= table.find_all('th')
 world_title
 
 
-# In[11]:
+# In[11]: STRIPING THE TITLE OF EACH COLUMNS INTO TEXT 
 
 
 W_t_t= [title.text.strip() for title in world_title]
@@ -77,7 +72,7 @@ W_t_t= [title.text.strip() for title in world_title]
 print(W_t_t)
 
 
-# In[13]:
+# In[13]:IMPORT PANDAS TO STRUCTURE DATA AND MAKE CHANGES IN FORMAT 
 
 
 import pandas as pd
@@ -97,7 +92,7 @@ df
 column_data=table.find_all('tr')
 
 
-# In[16]:
+# In[16]:NOW ARRANGING DATA AS PER COLUMN STANDARD
 
 
 for row in column_data[1:]:
@@ -114,7 +109,7 @@ for row in column_data[1:]:
 df
 
 
-# In[18]:
+# In[18]:NOW SAVING THE DATA LOCALLY IN EXCEL FORMAT
 
 
 df.to_excel(r'C:\Users\ASUS\OneDrive\projects.xlsx', index=False)
